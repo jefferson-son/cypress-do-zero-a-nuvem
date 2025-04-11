@@ -181,7 +181,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     
   })
 
-  it.only('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', () => {
+  it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', () => {
     cy.get('#firstName').type('Jefferson');
     cy.get('#lastName').type('Ferreira');
     cy.get('#email').type('jefferson@gmail.com');
@@ -198,5 +198,18 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get('.success').should('be.visible');
     
   })
+
+  it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', () => {
+    cy.get('a[href="privacy.html"]').should('have.attr', 'target', '_blank');
+  });
+
+  it('acessa a página da política de privacidade removendo o target e então clicando no link', () => {
+    cy.get('a[href="privacy.html"]').invoke('removeAttr', 'target').click();
+  });
+
+  
+
+ 
+
 
 });
